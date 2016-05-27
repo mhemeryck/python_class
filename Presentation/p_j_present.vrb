@@ -1,28 +1,14 @@
-\frametitle{Pitfalls}
+\frametitle{List of Pitfalls}
 \begin{itemize}
-	\item Bracket notation: A[i,j]
-	\item Python uses 0-based indexing (Julia is 1-based like MATLAB)
-	\small
-	\begin{lstlisting}
->>> x = np.array([1, 2])
->>> x[0]
->>> 1
-\end{lstlisting}
-\normalsize
-		\item {Python and Julia pass by reference (MATLAB passes by value)}
-		\small
-\begin{lstlisting}
->>> y = x
->>> y[0] = 3
->>> x
->>> array([3, 2])
-\end{lstlisting}
-	\item Python allows negative indexing
-		\small
-\begin{lstlisting}
->>> y[-1]
->>> 2
-\end{lstlisting}
-\normalsize
-\item Indentation is important in Python!
-		\end{itemize}
+
+\item Noteworthy Differences from MATLAB
+\begin{itemize}
+\vspace{1.4cm}
+\item Python: http://mathesaurus.sourceforge.net/matlab-numpy.html
+\vspace{0.7cm}
+\item Julia: http://docs.julialang.org/en/release-0.4/manual/noteworthy-differences/
+\vspace{0.4cm}
+\item ...and many other webpages!
+\end{itemize}
+
+\end{itemize}

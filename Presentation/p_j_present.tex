@@ -87,8 +87,9 @@
 			\item  \textcolor{black}{Open Source}
 			\item \textcolor{black}{No cost}
 			\item \textcolor{black}{Easy, concise syntax}
-				\item \textcolor{black}{Rapid development for testing}
+			\item \textcolor{black}{Rapid development for testing}
 			\item \textcolor{black}{Portability}
+			\item \textcolor{black}{Performance}
 		\end{itemize}
 		\end{column}
 	\end{columns}	
@@ -97,6 +98,7 @@
 \begin{frame}[fragile]{Noteworthy Points}
 Some similarities between Python and Julia
 	\begin{itemize}
+	\vspace{0.2cm}
 	\item Interoperability: can call one from another easily
 	\item Interfaces with low level languages (e.g. Cython)
 	\item Easily parallelizable
@@ -104,17 +106,18 @@ Some similarities between Python and Julia
 		\vspace{10mm}
 		And some differences
 			\begin{itemize}
+			\vspace{0.2cm}
 	\item Julia has strong core language, built for scientific computing
 	\item Python weak core, relies on third party libraries
-   \item Julia has smaller user base
+    \item Julia has smaller user base
 		\end{itemize}
 \end{frame}
 %--------------------------------------
-\begin{frame}[fragile]{Pitfalls}
+\begin{frame}[fragile]{Pitfalls - Python}
 	\begin{itemize}
-	\item Bracket notation: A[i,j] 
+	\item Bracket notation: A[i,j] (Julia \& Python)
 	\item Python uses 0-based indexing (Julia is 1-based like MATLAB)
-	\small
+	\scriptsize
 	\begin{lstlisting}
 >>> x = np.array([1, 2])
 >>> x[0] 
@@ -122,22 +125,78 @@ Some similarities between Python and Julia
 \end{lstlisting}
 \normalsize
 		\item {Python and Julia pass by reference (MATLAB passes by value)}
-		\small
+		\scriptsize
 \begin{lstlisting}
 >>> y = x
 >>> y[0] = 3
 >>> x 
->>> array([3, 2])
+>>> array([3, 2]) #use np.copy instead!
 \end{lstlisting}
-	\item Python allows negative indexing
-		\small
+\normalsize
+	\item Python allows negative indexing (not in Julia)
+		\scriptsize
 \begin{lstlisting}
 >>> y[-1]
 >>> 2
 \end{lstlisting}	
 \normalsize
-\item Indentation is important in Python!
+\item Indentation is important in Python! (not in Julia)
 		\end{itemize}
+\end{frame}
+
+%--------------------------------------
+\begin{frame}[fragile]{Pitfalls Julia}
+	\begin{itemize}
+
+	\item Calling an empty function needs parenthesis (Julia \& Python)
+	\scriptsize
+	\begin{lstlisting}
+ >>> rand #prints the function (which is an object)
+ >>> rand (generic function with 35 methods)
+ >>> rand() #calls the function
+ >>> 0.21116569117315054
+	\end{lstlisting}
+	\normalsize
+	\item Dot product returns a 1-dimensional array (Python: dot(a,b))
+	\scriptsize
+	\begin{lstlisting}
+ >>> [1;2;3]'*[4;4;0] < 10 #the doct product returns an array
+ >>> ERROR: MethodError: `isless` has no method 
+    matching isless(::Array{Int64,1}, ::Int64)
+ >>> ([1;2;3]'*[4;4;0])[1]<10 #you have to access the value
+ >>> false
+	\end{lstlisting}
+	\normalsize  
+	\item Logical operations with arrays
+	\scriptsize
+	\begin{lstlisting}
+ >>> [1;2]<[5;6] # this expression would work in MATLAB
+ >>> ERROR: MethodError: `isless` has no method matching 
+     isless(::Array{Int64,1}, ::Array{Int64,1})
+     in < at operators.jl:33
+ >>> [1;2].<[5;6] #.operator (e.g. like .*)
+ >>> 2-element BitArray{1}:
+     true
+     true
+	\end{lstlisting}
+	\normalsize
+	\end{itemize}
+\end{frame}
+%--------------------------------------
+\begin{frame}[fragile]{List of Pitfalls}
+	\begin{itemize}
+
+	\item Noteworthy Differences from MATLAB
+	\begin{itemize}
+	\vspace{1.4cm}
+	\item Python: http://mathesaurus.sourceforge.net/matlab-numpy.html
+	\vspace{0.7cm}
+	\item Julia: http://docs.julialang.org/en/release-0.4/manual/noteworthy-differences/
+	\vspace{0.4cm}
+	\item ...and many other webpages!
+	\end{itemize}
+
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
