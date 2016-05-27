@@ -1,0 +1,107 @@
+% packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{cases}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{algorithmic}
+%\usepackage{fullpage}
+\usepackage{filecontents}
+\usepackage{pstool}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+
+%% libraries (mostly tikz)
+\usetikzlibrary{patterns,topaths,positioning,calc,arrows,shapes,backgrounds,shapes.geometric,plotmarks,decorations.pathreplacing,decorations.markings,shapes.misc,shadows,dsp}
+\usepackage{hf-tikz}
+\usetikzlibrary{matrix}
+% used to externalize tikz images to pdf
+\usetikzlibrary{external} 
+\tikzexternalize[prefix=./images/pdf/] 
+%\graphicspath{{./images/pdf/}}
+\tikzset{external/system call={lualatex
+\tikzexternalcheckshellescape -halt-on-error -interaction=batchmode
+-jobname "\image" "\texsource"}}
+
+
+% turn off pgfplotsset error that always pops up
+\pgfplotsset{compat/show suggested version=false}
+
+% allow custom lengths for tikz files imported via matlab2tikz
+\newlength\figureheight 
+\newlength\figurewidth 
+
+
+% colors
+\definecolor{lavander}{cmyk}{0,0.48,0,0}
+\def\lav{lavander!90}
+\definecolor{violet}{cmyk}{0.79,0.88,0,0}
+\definecolor{burntorange}{cmyk}{0,0.52,1,0}
+\def\oran{orange!30}
+\definecolor{dgreen}{RGB}{76,153,0}
+\def\dgree{dgreen!90}
+\definecolor{spot}{cmyk}{1,0.20,0,0}
+\definecolor{purp}{cmyk}{0,1,0,.5}
+\definecolor{inthenavy}{RGB}{0,51,102}
+\definecolor{blue_kuleuven}		{RGB}{17,110,138}	
+\definecolor{bk}		{RGB}{17,110,138}	
+\definecolor{lightred}{RGB}{255,102,102}%
+
+
+\tikzstyle{peers}=[draw,circle,violet,bottom color=\lav,
+                  top color= white, text=violet,minimum width=.8em,inner sep=0pt]
+\tikzstyle{peers_off}=[draw,circle,burntorange,bottom color=\oran,
+                  top color= white, text=violet,minimum width=.8em,inner sep=0pt]
+\tikzstyle{noise}=[draw,diamond,blue,bottom color=blue!90,
+                  top color= white, text=blue,minimum size=.7em,inner sep=0pt]
+\tikzstyle{speech}=[draw,rectangle,red,bottom color=red!90,
+                  top color= white, text=red,minimum width=.7em,minimum height=.7em,inner sep=0pt]
+\tikzstyle{speech1}=[draw,rectangle,black,bottom color=black!90,
+                  top color= white, text=black,minimum width=.7em,minimum height=.7em,inner sep=0pt]
+\tikzstyle{clusterhead}=[draw,circle,violet,bottom color=\lav,
+                  top color= white, text=violet,thick,inner sep=0pt,minimum size=.8em]
+\tikzstyle{nonhead}=[draw,circle,burntorange,bottom color=\oran,
+                  top color= white, text=violet,thick,inner sep=0pt,minimum size=.8em]
+
+
+
+%% definitions
+%\def\x{{\mathbf x}}
+%\def\y{{\mathbf y}}
+%\def\yl{{\mathbf y}_l}
+%\def\yr{{\mathbf y}_r}
+%\def\n{{\mathbf n}}
+%\def\a{{\mathbf a}}
+%\def\ahat{\hat{\mathbf a}}
+%\def\Rxx{{\bf R}_{{\bf x}{\bf x}}}
+%\def\Rxxest{\widetilde{\bf R}_{{\bf x}{\bf x}}}
+%\def\Rxxcomb{\widehat{\bf R}_{{\bf x}{\bf x}}}
+\def\Rnnest{\widetilde{\bf R}_{{\bf N}{\bf N}}}
+\def\Ryyest{\widetilde{\bf R}_{{\bf Y}{\bf Y}}}
+%\def\Rnn{{\bf R}_{{\bf n}{\bf n}}}
+%\def\Ryy{{\bf R}_{{\bf y}{\bf y}}}
+%\def\ryd{{\bf r}_{{\bf y}{\bf d}_k}}
+%\def\SD{\text{SD}_\text{int}}
+\def\SNRin{\text{SNR}_\text{IN}}
+\def\SNRout{\text{SNR}_\text{OUT}}
+%
+%% commands
+\newcommand{\Rcorr}[1]{\mathbf{R}_{\mathbf{{#1}}\mathbf{{#1}}}}
+\newcommand{\Rcrosscorr}[2]{\mathbf{R}_{\mathbf{{#1}}{#2}}}
+\newcommand{\Rcrosscorrt}[2]{\mathbf{r}_{\mathbf{{#1}}{#2}}}
+%\newcommand{\dkest}[1]{\widetilde{\mathbf{d}}_{#1}}
+%\newcommand{\trace}[1]{\text{Tr}\{#1\}}
+%\newcommand{\Ek}[1]{{\bf E}_{#1}}
+%\newcommand{\ek}[1]{{\bf e}_{#1}}
+%\newcommand{\fwSNRseg}[2]{\text{fwSNRseg}^\text{#1}_\text{#2}}
+%\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+

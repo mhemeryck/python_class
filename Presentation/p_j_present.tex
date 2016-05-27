@@ -1,0 +1,144 @@
+%Created by Roland Pastorino in 2013
+%Contact info: roland.pastorino@mech.kuleuven.be / www.rolandpastorino.com
+%If you want to include your modifications in the template and make them available for everybody, you can contact the "KU Leuven, Dienst Communicatie, Afdeling Positionering en Marketing" (marketing@dcom.kuleuven.be) or myself.
+
+\documentclass[11pt,t]{beamer}
+\mode<presentation> {\usetheme{kuleuven}}
+
+% set the way TOC looks
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{subsection in toc}[default]
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=gray}
+
+\usepackage{animate}
+\usepackage{shadowtext}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{escapeinside={<@}{@>}}
+\usepackage{eurosym}
+% set item and enumerate look
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{itemize item}{\color{spot}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{inthenavy}$\blacksquare$}
+\setbeamertemplate{enumerate items}[default]
+
+\InputIfFileExists{defs}{}{} % defs.tex, contains own preamble settings
+\tikzset{external/export=false}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%info
+\title{Scientific Computing with Python and Julia}
+%\author{Joseph Szurley, }
+%\institute{Group, department, KU Leuven}
+%\subtitle{subtitle}
+%\date{January 6, 2013, Leuven, Belgium}
+%pdf metadata
+	\subject{KU Leuven's LaTeX template for oral presentation}
+	\keywords{KU Leuven, LaTeX template, beamer, TikZ, pdfLaTeX}
+\graphicspath{{graphics/}} % path to the graphics folder
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%title page
+	\setbeamertemplate{headline}[title_page]
+	\setbeamertemplate{footline}[title_page]
+	\csname beamer@calculateheadfoot\endcsname %recalculate head and foot dimension
+		\begin{frame}
+			\titlepage
+		\end{frame}
+%head and foot for body text	
+	\setbeamertemplate{headline}[body]
+	\setbeamertemplate{footline}[body]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Outline}
+%	\vskip 5mm
+%	\hfill	{\large \parbox{.95\textwidth}{\tableofcontents[hideallsubsections]}}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--------------------------------------
+\begin{frame}[t]{MATLAB, Python and Julia}
+	\begin{columns}[t]
+		\begin{column}{.6\textwidth}
+		\begin{center}
+				\underline{MATLAB}
+		\end{center}
+		\begin{itemize}
+			\item  \textcolor{black}{Closed Source}
+			\item \textcolor{black}{Licensing}
+				\begin{enumerate}
+			\item  MATLAB: 	\euro 2000 (standalone)		
+			\item Simulink: \euro 3000 (standalone)	
+			\item Added cost for toolboxes
+		\end{enumerate}
+		\item \textcolor{black}{Currently being phased out of KUL P\&Os} (perhaps more)
+		\item  \textcolor{black}{Compatibility}
+		\item \textcolor{black}{Strong IDE}
+		\item \textcolor{black}{Simulink}
+		\end{itemize}
+		\end{column}
+		\begin{column}{.6\textwidth}
+					\begin{center}
+				 \underline{Python and Julia}
+		\end{center}
+		\begin{itemize}
+			\item  \textcolor{black}{Open Source}
+			\item \textcolor{black}{No cost}
+			\item \textcolor{black}{Easy, concise syntax}
+				\item \textcolor{black}{Rapid development for testing}
+			\item \textcolor{black}{Portability}
+		\end{itemize}
+		\end{column}
+	\end{columns}	
+\end{frame}
+%--------------------------------------
+\begin{frame}[fragile]{Noteworthy Points}
+Some similarities between Python and Julia
+	\begin{itemize}
+	\item Interoperability: can call one from another easily
+	\item Interfaces with low level languages (e.g. Cython)
+	\item Easily parallelizable
+		\end{itemize}
+		\vspace{10mm}
+		And some differences
+			\begin{itemize}
+	\item Julia has strong core language, built for scientific computing
+	\item Python weak core, relies on third party libraries
+   \item Julia has smaller user base
+		\end{itemize}
+\end{frame}
+%--------------------------------------
+\begin{frame}[fragile]{Pitfalls}
+	\begin{itemize}
+	\item Bracket notation: A[i,j] 
+	\item Python uses 0-based indexing (Julia is 1-based like MATLAB)
+	\small
+	\begin{lstlisting}
+>>> x = np.array([1, 2])
+>>> x[0] 
+>>> 1
+\end{lstlisting}
+\normalsize
+		\item {Python and Julia pass by reference (MATLAB passes by value)}
+		\small
+\begin{lstlisting}
+>>> y = x
+>>> y[0] = 3
+>>> x 
+>>> array([3, 2])
+\end{lstlisting}
+	\item Python allows negative indexing
+		\small
+\begin{lstlisting}
+>>> y[-1]
+>>> 2
+\end{lstlisting}	
+\normalsize
+\item Indentation is important in Python!
+		\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
