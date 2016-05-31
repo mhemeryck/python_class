@@ -11,3 +11,5 @@ fs, sound = wavfile.read(AUDIO_FILE)
 recording = Recording(filename=AUDIO_FILE, fs=fs)
 
 print recording.filename, recording.fs
+
+sound = recording.read()
