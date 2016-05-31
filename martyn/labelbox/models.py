@@ -42,14 +42,34 @@ class Event(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     start = Column(Integer)
     stop = Column(Integer)
+    label_id = Column(Integer, ForeignKey('labels.id'))
+    label = relationship('Label')
     recording_id = Column(Integer, ForeignKey('recordings.id'))
     recording = relationship('Recording')
 
-    def __init__(self, start, stop, recording=None):
+    def __init__(self, start, stop, label=None, recording=None):
         self.start = start
         self.stop = stop
+        self.label = label
         self.recording = recording
 
     def __repr__(self):
         return ('{self.__class__.__name__}: '
                 '{self.id} ({self.start}, {self.stop})').format(self=self)
+
+
+class Label(Base):
+    """unique label corresponding to event"""
+
+    __tablename__ = 'labels'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(Text, unique=True)
+    events = relationship('Event')
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        fmt = '{self.__class__.__name__}: {self.id} ({self.name})'
+        return fmt.format(self=self)
