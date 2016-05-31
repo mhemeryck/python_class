@@ -3,13 +3,14 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 from scipy.io import wavfile
 
-from labelbox.models import Base, Recording
+from labelbox.models import Base, Recording, Event
 
 #==============================================================================
 # constants
 #==============================================================================
 DATABASE = 'sqlite:///labelbox.db'
 AUDIO_FILE = '../test.wav'
+EVENTS = [(31884, 55884), (101333, 138782)]
 
 #==============================================================================
 # database connection
@@ -34,3 +35,9 @@ if not Recording.query.count():
     recording = Recording(filename=AUDIO_FILE, fs=fs)
     session.add(recording)
     session.commit()
+
+# events
+if not Event.query.count():
+    for (start, stop) in EVENTS:
+        session.add(Event(start, stop, recording=recording))
+        session.commit()
